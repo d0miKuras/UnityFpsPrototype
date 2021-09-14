@@ -1,0 +1,21 @@
+﻿<Properties StartupConfiguration="{A04C60B6-1677-DA21-98A2-CFFFB17BF02A}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Character/CharacterController.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Character/CharacterController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Fps prototype" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="dbcc894e-6e2c-420e-a810-8087152e2d0b" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
