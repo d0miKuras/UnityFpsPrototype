@@ -262,11 +262,13 @@ MonoBehaviour:
   maxYRecoil: 1
   recoilCoolingRate: 1.8
   rotationSpeed: 50
-  returnSpeed: 25
-  hipfireRecoilRotation: {x: 5, y: 5, z: 5}
+  returnSpeed: 4
+  hipfireRecoilRotation: {x: 5, y: 5, z: 0}
   adsRecoilRotation: {x: 0.5, y: 0.5, z: 0.5}
   projectileVelocity: 50
   aimSpeed: 0
+  m_CameraCurrentRotation: {x: 0, y: 0, z: 0}
+  m_CameraRot: {x: 0, y: 0, z: 0}
 --- !u!1 &5057686203334756286
 GameObject:
   m_ObjectHideFlags: 0

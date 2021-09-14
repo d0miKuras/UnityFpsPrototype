@@ -7304,3 +7304,42 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004583 seconds.
+Callback registration failed. Increase kMaxCallback.
+
+Fatal Error! Callback registration failed. Increase kMaxCallback.
+
+Obtained 30 stack frames.
+#0  0x007fff2046192e in __pthread_kill
+#1  0x007fff203e5411 in abort
+#2  0x0000010909c70e in CrashDontLaunchBugReporter()
+#3  0x00000106cc3f57 in EditorMonoConsole::LogToConsoleImplementation(CppLogEntry const&)
+#4  0x00000106cc332c in EditorMonoConsole::LogToConsoleImplementation(DebugStringToFileData const&)
+#5  0x00000106cc4cee in LogToConsoleImplementation(DebugStringToFileData const&)
+#6  0x00000108afd96d in DebugStringToFilePostprocessedStacktrace(DebugStringToFileData const&)
+#7  0x00000108afe253 in DebugStringToFile(DebugStringToFileData const&)
+#8  0x000001046aa014 in CallbackArrayBase<void (*)(AssemblyLoadFailure), void (*)(void const*, AssemblyLoadFailure)>::Register(void (*)(AssemblyLoadFailure), void (*)(void const*, AssemblyLoadFailure), void const*)
+#9  0x00000107689a28 in LoadDomainAndUserAssemblies(bool)
+#10 0x0000010768c44e in LoadUserAssemblies()
+#11 0x00000107b85609 in AssetImportWorkerClient::ReloadMonoDomain(AssetResolver&)
+#12 0x00000107bb0f3c in invocation function for block in AssetImportWorkerClient::HandleMessage(PrepareMessage const&)::$_5::operator()() const
+#13 0x007fff202e6806 in _dispatch_client_callout
+#14 0x007fff202f368d in _dispatch_async_and_wait_invoke
+#15 0x007fff202e6806 in _dispatch_client_callout
+#16 0x007fff202f2b4f in _dispatch_main_queue_callback_4CF
+#17 0x007fff205c65e8 in __CFRUNLOOP_IS_SERVICING_THE_MAIN_DISPATCH_QUEUE__
+#18 0x007fff205887d2 in __CFRunLoopRun
+#19 0x007fff2058764c in CFRunLoopRunSpecific
+#20 0x007fff287c5ab3 in RunCurrentEventLoopInMode
+#21 0x007fff287c5815 in ReceiveNextEventCommon
+#22 0x007fff287c55b3 in _BlockUntilNextEventMatchingListInModeWithFilter
+#23 0x007fff22d886f2 in _DPSNextEvent
+#24 0x007fff22d86ec5 in -[NSApplication(NSEvent) _nextEventMatchingEventMask:untilDate:inMode:dequeue:]
+#25 0x007fff22d79239 in -[NSApplication run]
+#26 0x007fff22d4d47c in NSApplicationMain
+#27 0x000001090e3266 in EditorMain(int, char const**)
+#28 0x000001090e3499 in main
+#29 0x007fff204abf5d in start

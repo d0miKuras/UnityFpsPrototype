@@ -28,7 +28,7 @@ public class Sway : MonoBehaviour
 
     private void Start()
     {
-        _input = transform.parent.parent.parent.GetComponent<PlayerInputs>();
+        _input = transform.parent.parent.parent.parent.GetComponent<PlayerInputs>();
         _weaponManager = transform.parent.parent.parent.GetComponent<MyWeaponManager>();
         // var parent = transform.parent;
         // Debug.Log("First parent - " + parent.gameObject.name);
@@ -46,8 +46,7 @@ public class Sway : MonoBehaviour
     private void Update()
     {
         // Debug.Log(_input.GetLook());
-        if (!_weaponManager.isAiming)
-            UpdateSway();
+        UpdateSway();
     }
 
     #endregion

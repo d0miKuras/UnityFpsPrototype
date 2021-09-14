@@ -11,6 +11,7 @@ public class PlayerCharacterController : MonoBehaviour
     [Header("References")]
     public Camera playerCamera;
     public Transform weaponParent; // keeps track of the weapon parent transform
+    public GameObject CameraRoot;
 
     [Header("General")]
     [Tooltip("Force applied downward when in the air")]
@@ -89,12 +90,12 @@ public class PlayerCharacterController : MonoBehaviour
     private MyWeaponManager _weaponManager;
     public float cameraVerticalAngleX = 0f;
     public float cameraVerticalAngleY = 0f;
-    public float cameraVerticalAngle = 0f;
+    public float cameraVerticalAngleZ = 0f;
     Vector3 groundNormal;
     Vector3 _characterVelocity;
     Vector3 _latestImpactSpeed;
     float _lastTimeJumped = 0f;
-    private Vector3 _groundNormal;
+    Vector3 _groundNormal;
     float _targetCharacterHeight;
 
 
@@ -105,7 +106,6 @@ public class PlayerCharacterController : MonoBehaviour
     public bool hasJumpedThisFrame { get; private set; }
     public bool isCrouching { get; private set; }
     public bool isSprinting { get; private set; }
-
 
 
     private const float _jumpGroundingPreventionTime = 0.2f;
@@ -193,7 +193,6 @@ public class PlayerCharacterController : MonoBehaviour
             // limit the camera's vertical angle
             cameraVerticalAngleX = Mathf.Clamp(cameraVerticalAngleX, -89f, 89f);
 
-
             // make the camera pivot up and down
             if (wallRunComponent != null)
             {
@@ -201,9 +200,9 @@ public class PlayerCharacterController : MonoBehaviour
                 //     playerCamera.transform.Rotate(new Vector3(-_inputs.GetLook().y * t_rotationSpeed, 0, wallRunComponent.GetCameraRoll()), Space.World);
 
 
-                // playerCamera.transform.localEulerAngles = new Vector3(cameraVerticalAngleX, 0, wallRunComponent.GetCameraRoll());
+                playerCamera.transform.localEulerAngles = new Vector3(cameraVerticalAngleX, 0, wallRunComponent.GetCameraRoll());
 
-                playerCamera.transform.localRotation = Quaternion.Euler(cameraVerticalAngleX, transform.rotation.y, wallRunComponent.GetCameraRoll());
+
             }
             else
             {
@@ -401,14 +400,14 @@ public class PlayerCharacterController : MonoBehaviour
         {
             _controller.height = _targetCharacterHeight;
             _controller.center = Vector3.up * _controller.height * 0.5f;
-            playerCamera.transform.localPosition = Vector3.up * _targetCharacterHeight * cameraHeightRatio;
+            CameraRoot.transform.localPosition = Vector3.up * _targetCharacterHeight * cameraHeightRatio;
         }
         // smoothly update height
         else if (_controller.height != _targetCharacterHeight)
         {
             _controller.height = Mathf.Lerp(_controller.height, _targetCharacterHeight, crouchingSharpness * Time.deltaTime);
             _controller.center = Vector3.up * _controller.height * 0.5f;
-            playerCamera.transform.localPosition = Vector3.Lerp(playerCamera.transform.localPosition, Vector3.up * _targetCharacterHeight * cameraHeightRatio, crouchingSharpness * Time.deltaTime);
+            CameraRoot.transform.localPosition = Vector3.Lerp(CameraRoot.transform.localPosition, Vector3.up * _targetCharacterHeight * cameraHeightRatio, crouchingSharpness * Time.deltaTime);
 
         }
     }

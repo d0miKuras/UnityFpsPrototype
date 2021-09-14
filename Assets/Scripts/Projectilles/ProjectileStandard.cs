@@ -77,9 +77,9 @@ public class ProjectileStandard : MonoBehaviour
         if (weaponManager)
         {
             m_HasTrajectoryOverride = true;
-            Vector3 cameraToMuzzle = (m_ProjectileBase.initialPosition - weaponManager.transform.Find("Main Camera").transform.position);
+            Vector3 cameraToMuzzle = (m_ProjectileBase.initialPosition - weaponManager.transform.Find("Cameras/Main Camera").transform.position);
 
-            m_TrajectoryCorrectionVector = Vector3.ProjectOnPlane(-cameraToMuzzle, weaponManager.transform.Find("Main Camera").transform.forward);
+            m_TrajectoryCorrectionVector = Vector3.ProjectOnPlane(-cameraToMuzzle, weaponManager.transform.Find("Cameras/Main Camera").transform.forward);
             if (trajectoryCorrectionDistance == 0)
             {
                 transform.position += m_TrajectoryCorrectionVector;
@@ -90,7 +90,7 @@ public class ProjectileStandard : MonoBehaviour
                 m_HasTrajectoryOverride = false;
             }
 
-            if (Physics.Raycast(weaponManager.transform.Find("Main Camera").transform.position, cameraToMuzzle.normalized, out RaycastHit hit, cameraToMuzzle.magnitude, hittableLayers, QueryTriggerInteraction.Collide))
+            if (Physics.Raycast(weaponManager.transform.Find("Cameras/Main Camera").transform.position, cameraToMuzzle.normalized, out RaycastHit hit, cameraToMuzzle.magnitude, hittableLayers, QueryTriggerInteraction.Collide))
             {
                 if (IsHitValid(hit))
                 {

@@ -80,12 +80,13 @@ public class WeaponController : MonoBehaviour
     private int m_CurrentAmmo;
     private float m_LastTimeShot = Mathf.NegativeInfinity;
     private bool m_wantsToShoot;
-    public Vector3 m_CameraCurrentRotation;
+    public Vector3 m_RecoilRemaining;
     public Vector3 m_CameraRot;
     // private Quaternion m_OriginalCameraRotation;
     Vector3 m_LastMuzzlePosition;
     private PlayerCharacterController m_Controller;
     private Quaternion m_OriginalCameraRotation;
+    private Quaternion m_CurrentCameraRotation;
     #endregion
 
     #endregion
@@ -105,7 +106,7 @@ public class WeaponController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // HandleCameraRotation();
+        HandleRecoilCamera();
     }
 
     private void LateUpdate()
@@ -115,15 +116,6 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // HandleCameraRotation();
-        // m_isShooting = owner.transform.GetComponent<MyWeaponManager>().isShooting; // get whether or not the player is shooting
-        // if (!m_isShooting) // if not shooting, reset the recoil slowly
-        // {
-        //     recoilRemaining = Vector3.Lerp(recoilRemaining, Vector3.zero, recoilCoolingRate * Time.deltaTime);
-        // }
-        // Debug.Log(recoilRemaining);
-
         if (Time.deltaTime > 0)
         {
             muzzleWorldVelocity = (weaponMuzzle.position - m_LastMuzzlePosition) / Time.deltaTime;
@@ -162,7 +154,6 @@ public class WeaponController : MonoBehaviour
         if (m_CurrentAmmo > 0 && m_LastTimeShot + delayBetweenShots < Time.time)
         {
             var playerController = owner.transform.GetComponent<PlayerCharacterController>();
-            m_OriginalCameraRotation = playerController.playerCamera.transform.localRotation;
             Shoot();
             UseAmmo(1);
             return true;
@@ -179,30 +170,14 @@ public class WeaponController : MonoBehaviour
 
         ProjectileBase newProjectile = Instantiate(projectilePrefab, weaponMuzzle.position, Quaternion.LookRotation(weaponMuzzle.forward));
         // RECOIL
-        // if (recoilRemaining.x <= maxXRecoil)
-        //     recoilRemaining.x += Random.Range(-recoilXAxis, recoilXAxis);
-        // if (-recoilRemaining.y <= maxYRecoil)
-        //     recoilRemaining.y += Random.Range(0, -recoilYAxis);
         if (isAiming)
         {
-            m_CameraCurrentRotation += new Vector3(-adsRecoilRotation.x, Random.Range(-adsRecoilRotation.y, adsRecoilRotation.y), Random.Range(-adsRecoilRotation.z, adsRecoilRotation.z));
+            m_RecoilRemaining += new Vector3(-adsRecoilRotation.x, Random.Range(-adsRecoilRotation.y, adsRecoilRotation.y), Random.Range(-adsRecoilRotation.z, adsRecoilRotation.z));
         }
         else
         {
-            m_CameraCurrentRotation += new Vector3(-hipfireRecoilRotation.x, Random.Range(-hipfireRecoilRotation.y, hipfireRecoilRotation.y), Random.Range(-hipfireRecoilRotation.z, hipfireRecoilRotation.z));
+            m_RecoilRemaining += new Vector3(-hipfireRecoilRotation.x, Random.Range(-hipfireRecoilRotation.y, hipfireRecoilRotation.y), Random.Range(-hipfireRecoilRotation.z, hipfireRecoilRotation.z));
         }
-
-
-        // //1. Rotate player around Y-axis depending on amount of left-right recoil
-        // owner.transform.Rotate(new Vector3(0f, (recoilRemaining.x), 0f), Space.Self);
-
-        // //2. Rotate head around x axis depending on amount of up-down recoil
-        // var playerController = owner.transform.GetComponent<PlayerCharacterController>();
-        // playerController.cameraVerticleAngle += recoilRemaining.y;
-        // // var camera = owner.transform.Find("Main Camera");
-        // // camera.Rotate(new Vector3(Random.Range(0, recoilYAxis), 0, 0));
-        // // owner.transform.Find("Main Camera").Rotate(Vector3.right, Random.Range(0, recoilYAxis), Space.Self);
-
 
         newProjectile.Shoot(this);
     }
@@ -212,28 +187,17 @@ public class WeaponController : MonoBehaviour
         weaponRoot.SetActive(show);
     }
 
-    // void HandleCameraRotation()
-    // {
+    void HandleRecoilCamera()
+    {
 
-    //     var playerController = owner.transform.GetComponent<PlayerCharacterController>(); // TODO: figure out if I gotta call it every frame or not
-    //     // var camera = owner.transform.Find("Main Camera").transform;
-    //     m_CameraCurrentRotation = Vector3.Lerp(m_CameraCurrentRotation, Vector3.zero, returnSpeed * Time.deltaTime);
-    //     m_CameraRot = Vector3.Slerp(m_CameraRot, m_CameraCurrentRotation, rotationSpeed * Time.deltaTime);
-    //     Debug.Log("Camera Current Rotation: " + m_CameraCurrentRotation);
-    //     Debug.Log("Camera Rot: " + m_CameraRot);
-    //     playerController.cameraVerticalAngleX += m_CameraRot.x;
-    //     playerController.cameraVerticalAngleY -= m_CameraRot.y;
-    //     playerController.cameraVerticalAngleZ -= m_CameraRot.z;
-    //     // playerController.playerCamera.transform.localRotation *= Quaternion.Euler(m_CameraRot);
-    //     // if (!m_isShooting)
-    //     //     playerController.playerCamera.transform.localRotation = Quaternion.Slerp(playerController.playerCamera.transform.localRotation, m_OriginalCameraRotation, returnSpeed * Time.deltaTime);
+        var playerController = owner.transform.GetComponent<PlayerCharacterController>(); // TODO: figure out if I gotta call it every frame or not
+        m_RecoilRemaining = Vector3.Lerp(m_RecoilRemaining, Vector3.zero, returnSpeed * Time.deltaTime);
+        m_CameraRot = Vector3.Slerp(m_CameraRot, m_RecoilRemaining, rotationSpeed * Time.deltaTime);
+        playerController.CameraRoot.transform.localRotation = Quaternion.Euler(m_CameraRot);
 
-    // }
 
-    // void HandleCameraRotationCooling()
-    // {
+    }
 
-    // }
 
     #endregion
 }
