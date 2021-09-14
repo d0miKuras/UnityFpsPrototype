@@ -81,6 +81,9 @@ public class WeaponController : MonoBehaviour
 
     public GameObject owner { get; set; }
     public Vector3 muzzleWorldVelocity { get; private set; }
+    public GameObject sourcePrefab { get; set; }
+
+
 
     public bool isAiming { get; set; }
 

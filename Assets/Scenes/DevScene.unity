@@ -689,6 +689,8 @@ MonoBehaviour:
   startingWeapons:
   - {fileID: 5743747964062696127, guid: 168166819bbf64b42aef0030f865318f, type: 3}
   weaponParent: {fileID: 343615644}
+  downWeaponPosition: {fileID: 343615644}
+  weaponSwitchDelay: 1
   canBeShot:
     serializedVersion: 2
     m_Bits: 64

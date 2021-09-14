@@ -181,7 +181,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5057686202996008493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0.712}
+  m_LocalPosition: {x: -0, y: -0.12, z: 0.712}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5057686202937553362}
@@ -253,14 +253,14 @@ MonoBehaviour:
   shootType: 0
   weaponRoot: {fileID: 5057686203123825340}
   weaponMuzzle: {fileID: 6636527538852435777}
-  delayBetweenShots: 0.1
+  delayBetweenShots: 0.2
   maxAmmo: 100
-  projectileVelocity: 50
+  projectileVelocity: 150
   projectilePrefab: {fileID: -6026499980388658381, guid: 4116761365faf41418d270e9f9679c06, type: 3}
   rotationSpeed: 30
-  returnSpeed: 10
+  returnSpeed: 5
   hipfireCameraRecoilRotation: {x: 10, y: 10, z: 10}
-  adsCameraRecoilRotation: {x: 0.5, y: 0.5, z: 0.5}
+  adsCameraRecoilRotation: {x: 5, y: 5, z: 5}
   weaponRecoil_Position: {fileID: 5057686203123825343}
   weaponRecoil_Rotation: {fileID: 5057686204570772250}
   weaponRecoil_PositionalSpeed: 8
@@ -271,7 +271,7 @@ MonoBehaviour:
   weaponRecoil_RecoilKickBack: {x: 0.015, y: 0, z: -0.2}
   weaponRecoil_RotationAim: {x: 10, y: 4, z: 6}
   weaponRecoil_RecoilKickBackAim: {x: 0.015, y: 0, z: -0.2}
-  aimSpeed: 0
+  aimSpeed: 5
   m_RecoilRemaining: {x: 0, y: 0, z: 0}
   m_CameraRecoilRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &5057686203334756286
@@ -328,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5057686203690845796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35799998, y: -0.1539998, z: 0.9840004}
+  m_LocalPosition: {x: 0.358, y: -0.154, z: 0.984}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5057686204570772250}

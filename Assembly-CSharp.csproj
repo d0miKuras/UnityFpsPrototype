@@ -37,7 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets/Scripts/Projectilles/ProjectileStandard.cs" />
-     <Compile Include="Assets/InputSystem/LookGetter.cs" />
      <Compile Include="Assets/Scripts/Character/PlayerCharacterController.cs" />
      <Compile Include="Assets/Scripts/Character/MyWeaponManager.cs" />
      <Compile Include="Assets/Scripts/Character/WallRun.cs" />
