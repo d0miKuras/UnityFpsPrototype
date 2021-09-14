@@ -255,20 +255,25 @@ MonoBehaviour:
   weaponMuzzle: {fileID: 6636527538852435777}
   delayBetweenShots: 0.1
   maxAmmo: 100
-  projectilePrefab: {fileID: -6026499980388658381, guid: 4116761365faf41418d270e9f9679c06, type: 3}
-  recoilXAxis: 0.1
-  recoilYAxis: 0.05
-  maxXRecoil: 1
-  maxYRecoil: 1
-  recoilCoolingRate: 1.8
-  rotationSpeed: 50
-  returnSpeed: 4
-  hipfireRecoilRotation: {x: 5, y: 5, z: 0}
-  adsRecoilRotation: {x: 0.5, y: 0.5, z: 0.5}
   projectileVelocity: 50
+  projectilePrefab: {fileID: -6026499980388658381, guid: 4116761365faf41418d270e9f9679c06, type: 3}
+  rotationSpeed: 30
+  returnSpeed: 10
+  hipfireCameraRecoilRotation: {x: 10, y: 10, z: 10}
+  adsCameraRecoilRotation: {x: 0.5, y: 0.5, z: 0.5}
+  weaponRecoil_Position: {fileID: 5057686203123825343}
+  weaponRecoil_Rotation: {fileID: 5057686204570772250}
+  weaponRecoil_PositionalSpeed: 8
+  weaponRecoil_RotationalSpeed: 8
+  weaponRecoil_PositionalReturnSpeed: 18
+  weaponRecoil_RotationalReturnSpeed: 38
+  weaponRecoil_RecoilRotation: {x: 10, y: 5, z: 7}
+  weaponRecoil_RecoilKickBack: {x: 0.015, y: 0, z: -0.2}
+  weaponRecoil_RotationAim: {x: 10, y: 4, z: 6}
+  weaponRecoil_RecoilKickBackAim: {x: 0.015, y: 0, z: -0.2}
   aimSpeed: 0
-  m_CameraCurrentRotation: {x: 0, y: 0, z: 0}
-  m_CameraRot: {x: 0, y: 0, z: 0}
+  m_RecoilRemaining: {x: 0, y: 0, z: 0}
+  m_CameraRecoilRotation: {x: 0, y: 0, z: 0}
 --- !u!1 &5057686203334756286
 GameObject:
   m_ObjectHideFlags: 0

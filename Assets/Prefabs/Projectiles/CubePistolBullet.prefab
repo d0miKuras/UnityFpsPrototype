@@ -130,7 +130,9 @@ MonoBehaviour:
   impactVFX: {fileID: 8218886333550229059, guid: 424d37f127e0e4cf98a2605cdf4be7c4, type: 3}
   impactVFXLifetime: 5
   impactVFXSpawnOffset: 0.1
-  trajectoryCorrectionDistance: 10
+  trajectoryCorrectionDistance: 0
+  inheritWeaponVelocity: 1
+  gravityDownAcceleration: 0
   hittableLayers:
     serializedVersion: 2
     m_Bits: 64
