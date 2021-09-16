@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 554491260984153193}
   - component: {fileID: 561092315279797303}
   - component: {fileID: 571810003086344113}
+  - component: {fileID: 2101302366859081131}
+  - component: {fileID: 5675837979554828620}
   m_Layer: 0
   m_Name: P_Bullet
   m_TagString: Untagged
@@ -83,6 +85,43 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2101302366859081131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556228801957407561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 651daadb5163b407492ac39a20e8e2db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5675837979554828620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556228801957407561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61a29c7b0b6e2469cbdaced052d35534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 0.1
+  root: {fileID: 2643242973635540903}
+  tip: {fileID: 6032958582577824209}
+  maxLifeTime: 5
+  impactVFX: {fileID: 8218886333550229059, guid: 424d37f127e0e4cf98a2605cdf4be7c4, type: 3}
+  impactVFXLifetime: 5
+  impactVFXSpawnOffset: 0.1
+  trajectoryCorrectionDistance: -1
+  inheritWeaponVelocity: 1
+  gravityDownAcceleration: 0
+  hittableLayers:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &2780042657679230134
 GameObject:
   m_ObjectHideFlags: 0

@@ -42,6 +42,7 @@ public class WeaponController : MonoBehaviour
     public float delayBetweenShots;
     public int maxAmmo = 10;
     public float projectileVelocity;
+    public float hipBloom;
     [Tooltip("The projectile prefab")] public ProjectileBase projectilePrefab;
 
 
@@ -77,6 +78,8 @@ public class WeaponController : MonoBehaviour
     public Vector3 weaponRecoil_RecoilKickBackAim = new Vector3(0.015f, 0f, -0.2f);
     #endregion
     // public float damage;
+
+
     public float aimSpeed;
 
     public GameObject owner { get; set; }
@@ -151,16 +154,22 @@ public class WeaponController : MonoBehaviour
 
     public bool HandleShotInputs(bool inputDown, bool inputHeld, bool inputUp)
     {
-        m_wantsToShoot = inputDown || inputDown;
+        // m_wantsToShoot = inputDown || inputDown;
         switch (shootType)
         {
             case WeaponShootType.Manual:
-                if (inputHeld)
+                if (inputDown)
                 {
                     return TryShoot();
                 }
                 return false;
 
+            case WeaponShootType.Automatic:
+                if (inputHeld)
+                {
+                    return TryShoot();
+                }
+                return false;
             default:
                 return false;
         }
@@ -185,8 +194,8 @@ public class WeaponController : MonoBehaviour
 
     public void Shoot()
     {
-
-        ProjectileBase newProjectile = Instantiate(projectilePrefab, weaponMuzzle.position, Quaternion.LookRotation(weaponMuzzle.forward));
+        var shotDirection = isAiming ? weaponMuzzle.forward : GetShotDirectionWithinSpread(weaponMuzzle);
+        ProjectileBase newProjectile = Instantiate(projectilePrefab, weaponMuzzle.position, Quaternion.LookRotation(shotDirection));
         // RECOIL
         if (isAiming)
         {
@@ -202,6 +211,14 @@ public class WeaponController : MonoBehaviour
         }
 
         newProjectile.Shoot(this);
+    }
+
+    public Vector3 GetShotDirectionWithinSpread(Transform shootTransform)
+    {
+        float spreadAngleRatio = hipBloom / 180f;
+        Vector3 spreadWorldDirection = Vector3.Slerp(shootTransform.forward, UnityEngine.Random.insideUnitSphere, spreadAngleRatio);
+
+        return spreadWorldDirection;
     }
 
     public void ShowWeapon(bool show)
@@ -226,6 +243,7 @@ public class WeaponController : MonoBehaviour
         wr_Rot = Vector3.Slerp(wr_Rot, wr_RotationalRecoil, weaponRecoil_RotationalSpeed * Time.deltaTime);
         weaponRecoil_Rotation.localRotation = Quaternion.Euler(wr_Rot);
     }
+
 
 
     #endregion

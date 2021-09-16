@@ -688,12 +688,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingWeapons:
   - {fileID: 5743747964062696127, guid: 168166819bbf64b42aef0030f865318f, type: 3}
+  - {fileID: 817210310069000858, guid: 93a1289af9d064b95a3dba226810abe9, type: 3}
   weaponParent: {fileID: 343615644}
   downWeaponPosition: {fileID: 343615644}
-  weaponSwitchDelay: 1
-  canBeShot:
-    serializedVersion: 2
-    m_Bits: 64
+  weaponSwitchDelay: 0
 --- !u!114 &1332536309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,19 +927,7 @@ MonoBehaviour:
     m_ActionId: 3b8b4729-1f62-4c07-a540-24b69f94c749
     m_ActionName: Player/NextWeapon[/Keyboard/q]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1332536311}
-        m_TargetAssemblyTypeName: PlayerInputs, Assembly-CSharp
-        m_MethodName: OnFire
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 8eed3fed-60cb-4ec8-b523-f584dc9b5853
     m_ActionName: Player/Fire[/Mouse/leftButton,/XboxOneGampadMacOSWireless/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0

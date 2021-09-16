@@ -7,6 +7,9 @@ public class PlayerInputs : MonoBehaviour
 {
     #region Variables
 
+    private PlayerInput playerInput;
+    private InputAction fireAction;
+    private InputAction nextWeaponAction;
     [Header("Character inputs:")]
     [SerializeField]
     private Vector2 move;
@@ -49,34 +52,66 @@ public class PlayerInputs : MonoBehaviour
     private bool triggerAim;
 
 
-
     [Header("Movement Settings")]
     [SerializeField]
     private bool analogMovement;
 
     #endregion
 
+    #region Monobehaviour Callbacks
+
+    private void Awake()
+    {
+        playerInput = GetComponent<PlayerInput>();
+        fireAction = playerInput.actions["Fire"];
+        nextWeaponAction = playerInput.actions["NextWeapon"];
+    }
+    private void OnEnable()
+    {
+        fireAction.Enable();
+        nextWeaponAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        fireAction.Disable();
+        nextWeaponAction.Disable();
+    }
+
+    private void Update()
+    {
+
+        SetFireDown(fireAction.WasPerformedThisFrame());
+        SetFireHeld(fireAction.IsPressed());
+        SetFireReleased(fireAction.WasReleasedThisFrame());
+
+        SetNextWeapon(nextWeaponAction.WasPressedThisFrame(), nextWeaponAction.WasPerformedThisFrame(),
+        nextWeaponAction.WasReleasedThisFrame());
+    }
+
+    #endregion
+
     #region Input System Callbacks
-    public void OnNextWeapon(InputAction.CallbackContext value)
-    {
-        // if (value.started)
-        // {
-        //     Debug.Log("Next weapon");
-        //     SetNextWeapon(true);
-        // }
+    // public void OnNextWeapon(InputAction.CallbackContext value)
+    // {
+    //     // if (value.started)
+    //     // {
+    //     //     Debug.Log("Next weapon");
+    //     //     SetNextWeapon(true);
+    //     // }
 
-        // else
-        //     SetNextWeapon(false);
+    //     // else
+    //     //     SetNextWeapon(false);
 
-        SetNextWeapon(value.started, value.performed, value.canceled);
-    }
+    //     SetNextWeapon(value.started, value.performed, value.canceled);
+    // }
 
-    public void OnFire(InputAction.CallbackContext value)
-    {
-        SetFireDown(value.started);
-        SetFireHeld(value.performed);
-        SetFireReleased(value.canceled);
-    }
+    // public void OnFire(InputAction.CallbackContext context)
+    // {
+    //     SetFireDown(context.action.WasPerformedThisFrame());
+    //     SetFireHeld(context.performed);
+    //     SetFireReleased(context.canceled);
+    // }
 
     public void OnDash(InputAction.CallbackContext value)
     {

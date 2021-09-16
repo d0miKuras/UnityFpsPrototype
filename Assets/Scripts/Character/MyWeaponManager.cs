@@ -28,7 +28,7 @@ public class MyWeaponManager : MonoBehaviour
 
     PlayerInputs _input;
 
-    WeaponController[] m_WeaponSlots = new WeaponController[1]; // 1 weapon slots
+    WeaponController[] m_WeaponSlots = new WeaponController[2]; // 1 weapon slots
     int m_WeaponSwitchNewWeaponIndex;
     float m_TimeStartedWeaponSwitch;
     Vector3 m_WeaponMainLocalPosition;
@@ -55,6 +55,7 @@ public class MyWeaponManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(m_WeaponSwitchState);
         WeaponController activeWeapon = GetActiveWeapon();
         if (activeWeapon && m_WeaponSwitchState == WeaponSwitchState.Up)
         {
@@ -71,21 +72,11 @@ public class MyWeaponManager : MonoBehaviour
         if (!isAiming &&
             (m_WeaponSwitchState == WeaponSwitchState.Up || m_WeaponSwitchState == WeaponSwitchState.Down))
         {
-            SwitchWeapon(_input.GetNextWeaponHold());
+            if (_input.GetNextWeaponDown())
+            {
+                SwitchWeapon(true);
+            }
         }
-
-        // if (_input.GetNextWeaponHold())
-        //     m_WeaponSlots[0].ShowWeapon(true);
-
-        // // if (_input.GetFireInputHeld())
-        // // {
-        // //     isShooting = true;
-        // //     m_WeaponSlots[0].Shoot();
-        // // }
-        // // else
-        // //     isShooting = false;
-        // m_WeaponSlots[0].HandleShotInputs(_input.GetFireInputDown(), _input.GetFireInputHeld(), _input.GetFireInputReleased());
-        // m_WeaponSlots[0].isAiming = isAiming;
     }
 
     private void LateUpdate()
@@ -313,7 +304,6 @@ public class MyWeaponManager : MonoBehaviour
         // Transform t_state_hip = currentWeaponGameObject.transform.Find("States/Hip");
 
         Transform t_anchor = GetActiveWeapon().transform.Find("Anchor");
-        Debug.Log(t_anchor.position);
         Transform t_state_ads = GetActiveWeapon().transform.Find("States/ADS");
         Transform t_state_hip = GetActiveWeapon().transform.Find("States/Hip");
 

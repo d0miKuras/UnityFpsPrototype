@@ -151,7 +151,6 @@ public class ProjectileStandard : MonoBehaviour
             // Sphere cast
             Vector3 displacementSinceLastFrame = tip.position - m_LastRootPosition;
             RaycastHit[] hits = Physics.SphereCastAll(m_LastRootPosition, radius, displacementSinceLastFrame.normalized, displacementSinceLastFrame.magnitude, hittableLayers, QueryTriggerInteraction.Collide);
-            // Debug.Log("hits length: " + hits.Length);
             foreach (var hit in hits)
             {
                 if (IsHitValid(hit) && hit.distance < closesthit.distance)
@@ -163,7 +162,6 @@ public class ProjectileStandard : MonoBehaviour
 
             if (foundHit)
             {
-                // Debug.Log("Found hit");
                 // Handle case of casting when inside a collider
                 if (closesthit.distance <= 0f)
                 {
